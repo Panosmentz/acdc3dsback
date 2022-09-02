@@ -36,6 +36,12 @@ app.get("/api/orders/:orderID", async (req, res) => {
   res.json(paymentSource);
 });
 
+app.get("/webhooks", async (req, res) => {
+  const response = req.params;
+  console.log("This is what the webhooks endpoint got hit with: ", response);
+  res.json(response);
+});
+
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);
 });
