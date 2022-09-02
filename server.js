@@ -35,3 +35,4 @@ app.get("/api/orders/:orderID", async (req, res) => {
 });
 
 app.listen(8888);
+module.exports = app;
