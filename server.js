@@ -6,6 +6,8 @@ const app = express();
 app.set("view engine", "ejs"); //set up ejs for templating
 app.use(express.static("public")); // serve static files from public - app.js
 
+const PORT = process.env.PORT || 3030;
+
 // render checkout page with client id & unique client token
 app.get("/", async (req, res) => {
   const clientId = process.env.CLIENT_ID;
@@ -34,5 +36,6 @@ app.get("/api/orders/:orderID", async (req, res) => {
   res.json(paymentSource);
 });
 
-app.listen(8888);
-module.exports = app;
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`);
+});

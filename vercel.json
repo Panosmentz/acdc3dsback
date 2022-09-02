@@ -1,6 +1,0 @@
-{
-  "version": 2,
-  "name": "acdc-3ds-back-checks",
-  "builds": [{ "src": "server.js", "use": "@vercel/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "/" }]
-}
