@@ -36,8 +36,8 @@ app.get("/api/orders/:orderID", async (req, res) => {
   res.json(paymentSource);
 });
 
-app.get("/webhooks", async (req, res) => {
-  const response = req.params;
+app.post("/webhooks", async (req, res) => {
+  const response = req.body;
   console.log("This is what the webhooks endpoint got hit with: ", response);
   res.json(response);
 });
