@@ -1,10 +1,16 @@
 import "dotenv/config";
 import express from "express";
 import * as paypal from "./paypal-api.js";
+import bodyParser from "body-parser";
 
 const app = express();
 app.set("view engine", "ejs"); //set up ejs for templating
 app.use(express.static("public")); // serve static files from public - app.js
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
 const PORT = process.env.PORT || 3030;
 
