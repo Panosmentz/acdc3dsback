@@ -44,10 +44,9 @@ app.get("/api/orders/:orderID", async (req, res) => {
 });
 
 app.post("/webhooks", async (req, res) => {
-  console.log("Webhook received: ", JSON.stringify(req.body));
-  console.log("These are the headers: ", JSON.stringify(req.headers));
   const response = req.body;
   console.log("This is what the webhooks endpoint got hit with: ", response);
+  console.log("These are the headers: ", JSON.stringify(req.headers));
   res.json(response);
 });
 
