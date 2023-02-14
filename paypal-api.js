@@ -103,15 +103,15 @@ export async function check3DS(orderId) {
 export async function verifyWebhook(headersObj, bodyObj) {
   const accessToken = await generateAccessToken();
   const url = `${base}/v1/notifications/verify-webhook-signature`;
-  console.log("headers trans time: ", headersObj["paypal-transmission-time"]);
-  console.log("headers trans sig: ", headersObj["paypal-transmission-sig"]);
-  console.log("bodyObj id: ", bodyObj.id);
-  console.log("bodyObj resource: ", bodyObj["resource"]);
-  console.log(
-    "bodyObj resource: ",
-    bodyObj["resource"]["seller_receivable_breakdown"]["net_amount"]
-  );
-
+  // console.log("headers trans time: ", headersObj["paypal-transmission-time"]);
+  //console.log("headers trans sig: ", headersObj["paypal-transmission-sig"]);
+  //console.log("bodyObj id: ", bodyObj.id);
+  //console.log("bodyObj resource: ", bodyObj["resource"]);
+  //console.log(
+  //  "bodyObj resource: ",
+  //  bodyObj["resource"]["seller_receivable_breakdown"]["net_amount"]
+  //);
+  const eventData = JSON.stringify(bodyObj);
   const response = await fetch(url, {
     method: "post",
     headers: {
@@ -126,7 +126,7 @@ export async function verifyWebhook(headersObj, bodyObj) {
       transmission_time: headersObj["paypal-transmission-time"],
       webhook_id: bodyObj.id,
       webhook_event: {
-        bodyObj,
+        eventData,
       },
     },
   });
