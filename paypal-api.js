@@ -124,7 +124,8 @@ export async function verifyWebhook(headersObj, bodyObj) {
       transmission_id: headersObj["paypal-transmission-id"],
       transmission_sig: headersObj["paypal-transmission-sig"],
       transmission_time: headersObj["paypal-transmission-time"],
-      webhook_id: bodyObj.id,
+      //webhook_id: bodyObj.id,
+      webhook_id: bodyObj["resource"]["id"],
       webhook_event: {
         bodyObj,
       },
