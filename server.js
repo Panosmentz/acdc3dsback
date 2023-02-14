@@ -44,10 +44,12 @@ app.get("/api/orders/:orderID", async (req, res) => {
 });
 
 app.post("/webhooks", async (req, res) => {
-  const response = req.body;
-  console.log("This is what the webhooks endpoint got hit with: ", response);
-  console.log("These are the headers: ", JSON.stringify(req.headers));
-  res.json(response);
+  const bodyObj = req.body;
+  const headersObj = req.headers;
+  console.log("This is what the webhooks endpoint got hit with: ", bodyObj);
+  console.log("These are the headers: ", JSON.stringify(headersObj));
+  const verify = await paypal.verifyWebhook(headersObj, bodyObj);
+  res.json(verify);
 });
 
 app.listen(PORT, () => {

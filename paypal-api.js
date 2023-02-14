@@ -99,3 +99,27 @@ export async function check3DS(orderId) {
   console.log("This is the payment source: ", data);
   return data;
 }
+
+export async function verifyWebhook(headersObj, bodyObj) {
+  const accessToken = await generateAccessToken();
+  const url = `${base}/v1/notifications/verify-webhook-signature`;
+  const response = await fetch(url, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({
+      auth_algo: headersObj.paypal - auth - algo,
+      cert_url: headersObj.paypal - cert - url,
+      transmission_id: headersObj.paypal - transmission - id,
+      transmission_sig: headersObj.paypal - transmission - sig,
+      transmission_time: headersObj.paypal - transmission - time,
+      webhook_id: bodyObj.id,
+      webhook_event: bodyObj,
+    }),
+  });
+  const data = await response.json();
+  console.log("verifyWebhook returned: ", data);
+  return data;
+}
