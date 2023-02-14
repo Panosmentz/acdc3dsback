@@ -111,7 +111,7 @@ export async function verifyWebhook(headersObj, bodyObj) {
   //  "bodyObj resource: ",
   //  bodyObj["resource"]["seller_receivable_breakdown"]["net_amount"]
   //);
-  const eventData = JSON.stringify(bodyObj);
+  //const eventData = JSON.stringify(bodyObj);
   const response = await fetch(url, {
     method: "post",
     headers: {
@@ -126,7 +126,8 @@ export async function verifyWebhook(headersObj, bodyObj) {
       transmission_time: headersObj["paypal-transmission-time"],
       webhook_id: bodyObj.id,
       webhook_event: {
-        eventData,
+        event_version: bodyObj["event_version"],
+        resource_version: bodyObj["resource_version"],
       },
     },
   });
