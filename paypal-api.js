@@ -120,7 +120,9 @@ export async function verifyWebhook(headersObj, bodyObj) {
       transmission_sig: headersObj["paypal-transmission-sig"],
       transmission_time: headersObj["paypal-transmission-time"],
       webhook_id: bodyObj.id,
-      webhook_event: bodyObj,
+      webhook_event: {
+        bodyObj,
+      },
     },
   });
   const data = await response.json();
