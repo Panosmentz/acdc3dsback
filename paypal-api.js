@@ -118,7 +118,7 @@ export async function verifyWebhook(headersObj, bodyObj) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,
     },
-    body: {
+    body: JSON.stringify({
       auth_algo: headersObj["paypal-auth-algo"],
       cert_url: headersObj["paypal-cert-url"],
       transmission_id: headersObj["paypal-transmission-id"],
@@ -126,11 +126,11 @@ export async function verifyWebhook(headersObj, bodyObj) {
       transmission_time: headersObj["paypal-transmission-time"],
       webhook_id: bodyObj.id,
       webhook_event: {
-        event_version: bodyObj["event_version"],
-        resource_version: bodyObj["resource_version"],
+        bodyObj,
       },
-    },
+    }),
   });
+
   const data = await response.json();
   console.log("verifyWebhook returned: ", data);
   return data;
