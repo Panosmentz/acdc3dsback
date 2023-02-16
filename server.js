@@ -46,7 +46,10 @@ app.get("/api/orders/:orderID", async (req, res) => {
 app.post("/webhooks", async (req, res) => {
   const bodyObj = req.body;
   const headersObj = req.headers;
-  console.log("This is what the webhooks endpoint got hit with: ", bodyObj);
+  console.log(
+    "This is what the webhooks endpoint got hit with: ",
+    JSON.stringify(bodyObj, null, 2)
+  );
   console.log("These are the headers: ", headersObj);
   const verify = await paypal.verifyWebhook(headersObj, bodyObj);
   res.json(verify);

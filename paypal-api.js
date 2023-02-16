@@ -105,7 +105,7 @@ export async function verifyWebhook(headersObj, bodyObj) {
   const url = `${base}/v1/notifications/verify-webhook-signature`;
   console.log("headers trans time: ", headersObj["paypal-transmission-time"]);
   console.log("headers trans sig: ", headersObj["paypal-transmission-sig"]);
-  console.log("bodyObj id: ", bodyObj.id);
+  // console.log("bodyObj id: ", bodyObj.id);
   //console.log("bodyObj resource: ", bodyObj["resource"]);
   //console.log(
   //  "bodyObj resource: ",
